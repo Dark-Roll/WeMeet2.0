@@ -14,6 +14,7 @@ import AgendaCheckbox from './AgendaCheckbox';
 import AgendaInput from './AgendaInput';
 import Branch from '../../img/branch.gif';
 import Eagle from '../../img/eagle.png';
+import EagleButton from './EagleButton'
 
 class Agenda extends React.Component {
     constructor(props) {
@@ -110,6 +111,7 @@ class Agenda extends React.Component {
             <div className="agenda-block">
                 <img className="branch" src={Branch} />
                 <img className="eagle" src={Eagle} />
+                <EagleButton />
                 <div className="flag">
                     <div className="bar" />
                     <div className="left" />

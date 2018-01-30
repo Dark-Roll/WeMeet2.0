@@ -3,19 +3,19 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const fs = require("fs");
-const dbschema = require('./src/DBschema');
-const mongoose = require('mongoose');
+// const dbschema = require('./src/DBschema');
+// const mongoose = require('mongoose');
 //const db = require('./app/lib/db.js');
 
 //HTTPS參數;
-const option = {
-    ca: fs.readFileSync("./src/certificate/ca_bundle.crt"),
-    key: fs.readFileSync("./src/certificate/private.key"),
-    cert: fs.readFileSync("./src/certificate/certificate.crt")
-};
+// const option = {
+    // ca: fs.readFileSync("./src/certificate/ca_bundle.crt"),
+    // key: fs.readFileSync("./src/certificate/private.key"),
+    // cert: fs.readFileSync("./src/certificate/certificate.crt")
+// };
 
 //對https Server內傳入express的處理
-const server = require("https").createServer(option, app);
+const server = require("http").createServer(app);
 app.use(
     bodyParser.urlencoded({
         type: "image/*",
@@ -41,7 +41,7 @@ server.listen(443);
 var ExpressPeerServer = require('peer').ExpressPeerServer;
 var peerExpress = require('express');
 var peerApp = peerExpress();
-var peerServer = require('https').createServer(option, peerApp);
+var peerServer = require('http').createServer(peerApp);
 var options = { debug: false }
 var peerPort = 8888;
 peerApp.use('/api', ExpressPeerServer(peerServer, options));
@@ -317,20 +317,20 @@ io.on("connection", function (socket) {
     });
 
     //0110 Andy Added 回饋系統
-    socket.on("sendFeedback", data => {
-        // console.log('收到回饋訊息!要存進資料庫囉');
-        let room = Object.keys(socket.rooms)[1];
-        let Feedback = mongoose.model('Feedback');
-        let feedback = new Feedback({
-            msg: data.msg,
-            create_at: data.create_at
-        });
-        feedback.save(function (err) {
-            var DBstatus = (err ? "存進資料庫失敗" : "存進資料庫成功");
-            console.log(DBstatus);
-            socket.to(room).emit("receiveDBStatus", { DBstatus: DBstatus });
-        })
-    });
+    // socket.on("sendFeedback", data => {
+    //     // console.log('收到回饋訊息!要存進資料庫囉');
+    //     let room = Object.keys(socket.rooms)[1];
+    //     // let Feedback = mongoose.model('Feedback');
+    //     let feedback = new Feedback({
+    //         msg: data.msg,
+    //         create_at: data.create_at
+    //     });
+    //     feedback.save(function (err) {
+    //         var DBstatus = (err ? "存進資料庫失敗" : "存進資料庫成功");
+    //         console.log(DBstatus);
+    //         socket.to(room).emit("receiveDBStatus", { DBstatus: DBstatus });
+    //     })
+    // });
 
 
     socket.on("setAllUserRandomHat", randomNumberArray => {
