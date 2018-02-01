@@ -2,24 +2,30 @@
 
 import React from "react";
 import styled from 'styled-components';
+import socket from "../../../WeMeetWork/src/socket";
 
 export default class EagleButton extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-            display: 'none'
+            display: 'none' ,
+            advice: ''
         }
-        const AdviceButton=styled.div`
-            position: absolute;
-            top:5%;
-            right:10%;
-            width:150px;
-            height:50px;
-        `;
+    
 
     
     }
     
+componentDidMount(){
+    socket.on('receiveDBStatus', (DBstatus)=>{
+        if(DBstatus.DBstatus==="Success"){
+
+        }else{
+            
+        }
+    })
+}
+
 // if else 
 // 3 等於
 onClick(){
@@ -39,39 +45,83 @@ onClick(){
 // this.props.click(this.state.display);
     //setState(this.state.diplay) 
 }    
-    render(){
 
+onChange_Text(e){
+    this.setState({advice: e.target.value});
+}
+
+onClick_adviceSend(){
+    socket.emit('sendFeedback',{
+            'msg': this.state.advice,
+            'creat_at' : date
+    })
+}
+
+
+// emit ????
+// styled-components
+    render(){
+        const Button=styled.button`
+            position: absolute;
+            top:5%;
+            right:10%;
+            width:150px;
+            height:50px;
+            border: 2px solid;
+        `;
+        const Onput=styled.input`
+            top:5%;
+            right:5%;
+            position:absolute;
+        `;
+        const Hidden=styled.div`
+            display:${this.state.display};
+            top:5%;
+            right:5%;
+            position:absolute;
+            
+        `;
         
         return(
             <div className="box">
-                <AdviceButton>
-                    <button className="adviceButton"
-                        // style={{
-                        //     'position' : 'absolute',
-                        //     'top' : '5px' ,
-                        //     'cursor': 'pointer'
-                        // }}
-                        
-                        onClick={ ()=>{
-                                this.onClick()
+                <Button                     
+                    onClick={ ()=>{
+                            this.onClick()
+                        }
+                        // this.onClick.bind(this)   //arrow function
+                        // 查this //eaglebutton本身 
+                        // 拿不到參數
+                        // constructor 的寫法
+                    }
+                >
+                顯示
+                </Button>
+                {/* // RETURN 變數 很少就ok */}
+                <Hidden>
+                    <Onput placeholder="Enter your advice" 
+                        onChange={ ()=>{
+                            this.onChange_Text()
                             }
-                            // this.onClick.bind(this)   //arrow function
-                            // 查this //eaglebutton本身 
-                            // 拿不到參數
-                            // constructor 的寫法
+                        }
+                    />  //textarea
+                    
+                    <Button
+                        onClick={ ()=>{
+                                this.onClick_adviceSend()
+                            }
                         }
                     >
-                    顯示
-                    </button>
-                </AdviceButton>
-                // RETURN 變數 很少就ok
+                    send
+                    </Button>
+                </Hidden>
 
-                <input className="hiddenAdvice" 
-                    style= {{'display':this.state.display }}
-                    
-                >
-                </input>
+            action
+            parent child    
             </div>
+            // ul>li*2
+            // p10
+            
+
 
         );
     }
