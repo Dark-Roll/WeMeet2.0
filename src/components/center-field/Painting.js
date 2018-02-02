@@ -1,6 +1,7 @@
 import React from "react";
 import socket from "../../socket";
 import Reset from '../../img/reset.png';
+import PaintingColor from './PaintingColor';
 
 class Painting extends React.Component {
     constructor(props) {
@@ -20,6 +21,8 @@ class Painting extends React.Component {
         this.currY = 0;
         this.ctx;
         this.onResize = this.onResize.bind(this)
+        this.handler = this.handler.bind(this)
+        this.handleIs = this.handleIs.bind(this)
     }
 
     componentWillMount() { }
@@ -73,7 +76,7 @@ class Painting extends React.Component {
         };
     }
 
-    findxy(e,res) {
+    findxy(e, res) {
         if (res == 'down') {
             let rect = this.refs.whiteboard.getBoundingClientRect()
             this.prevX = this.currX;
@@ -92,7 +95,7 @@ class Painting extends React.Component {
                 this.prevY = this.currY;
                 this.currX = e.clientX - rect.left
                 this.currY = e.clientY - rect.top
-                this.drawLine(this.prevX,this.prevY,this.currX,this.currY,this.state.color,this.state.size);
+                this.drawLine(this.prevX, this.prevY, this.currX, this.currY, this.state.color, this.state.size);
                 socket.emit("drawing", {
                     x0: this.prevX / this.refs.whiteboard.width,
                     y0: this.prevY / this.refs.whiteboard.height,
@@ -121,53 +124,8 @@ class Painting extends React.Component {
         socket.emit("reset");
     }
 
-    onClick_black() {
-        this.setState({
-            color: "black",
-            isColorListOpen: false
-        });
-    }
 
-    onClick_red() {
-        this.setState({
-            color: "red",
-            isColorListOpen: false
-        });
-    }
 
-    onClick_yellow() {
-        this.setState({
-            color: "yellow",
-            isColorListOpen: false
-        });
-    }
-
-    onClick_green() {
-        this.setState({
-            color: "green",
-            isColorListOpen: false
-        });
-    }
-
-    onClick_white() {
-        this.setState({
-            color: "white",
-            isColorListOpen: false
-        });
-    }
-
-    onClick_blue() {
-        this.setState({
-            color: "blue",
-            isColorListOpen: false
-        });
-    }
-
-    showColorList() {
-        this.setState({
-            isColorListOpen: !this.state.isColorListOpen
-        });
-    }
 
     showSizeList() {
         this.setState({
@@ -196,7 +154,29 @@ class Painting extends React.Component {
             size: 6,
             size_id: "size3",
             isSizeListOpen: false
-        });
+        }).bind(this);
+    }
+
+
+    // handleColor(color) {
+    //     this.setState({
+    //         color: color
+    //     })
+    //     // console.log(this.props.isColorListOpen);
+    // }
+
+    handler(newState) {
+        // console.log(isColorListOpen);
+        this.setState(newState)
+
+        // console.log(this.state.isColorListOpen);
+    }
+
+    handleIs(isColorListOpen) {
+        this.setState({
+            isColorListOpen: isColorListOpen
+        })
+
     }
 
     render() {
@@ -210,7 +190,7 @@ class Painting extends React.Component {
                     <div
                         className="button2"
                         id={this.state.size_id}
-                        onClick={()=>this.showSizeList()}
+                        onClick={() => this.showSizeList()}
                     >
                         <span>粗細</span>
                     </div>
@@ -222,76 +202,41 @@ class Painting extends React.Component {
                         <div
                             className="choice1"
                             id="size1"
-                            onClick={()=>this.onClick_size1()}
+                            onClick={() => this.onClick_size1()}
                         >
                             細
                         </div>
                         <div
                             className="choice1"
                             id="size2"
-                            onClick={()=>this.onClick_size2()}
+                            onClick={() => this.onClick_size2()}
                         >
                             中
                         </div>
                         <div
                             className="choice1"
                             id="size3"
-                            onClick={()=>this.onClick_size3()}
+                            onClick={() => this.onClick_size3()}
                         >
                             粗
                         </div>
                     </div>
 
-                    <div className="button2" id="color">
-                        <div
-                            className="color"
-                            id={this.state.color}
-                            onClick={()=>this.showColorList()}
-                        />
-                        <span>顏色</span>
-                    </div>
+                    <PaintingColor
+                        color={this.state.color}
+                        isColorListOpen={this.state.isColorListOpen}
+                        Change={this.handler}
 
-                    <div
-                        className="colorlist"
-                        id={this.state.isColorListOpen ? "visible" : ""}
-                    >
-                        <div
-                            className="choice"
-                            id="black"
-                            onClick={()=>{this.onClick_black()}}
-                        />
-                        <div
-                            className="choice"
-                            id="red"
-                            onClick={()=>{this.onClick_red()}}
-                        />
-                        <div
-                            className="choice"
-                            id="white"
-                            onClick={()=>{this.onClick_white()}}
-                        />
-                        <div
-                            className="choice"
-                            id="yellow"
-                            onClick={()=>{this.onClick_yellow()}}
-                        />
-                        <div
-                            className="choice"
-                            id="green"
-                            onClick={()=>{this.onClick_green()}}
-                        />
-                        <div
-                            className="choice"
-                            id="blue"
-                            onClick={()=>{this.onClick_blue()}}
-                        />
-                    </div>
-                    <div
+                        ChangeIs={this.handleIs}
+                    />
+
+
+                    < div
                         className="button2"
                         id="reset1"
-                        onClick={()=>{this.onClick_reset()}}
+                        onClick={() => { this.onClick_reset() }}
                     >
-                        <img src={Reset}/>
+                        <img src={Reset} />
                         <span>清空</span>
                     </div>
                 </div>
@@ -299,16 +244,16 @@ class Painting extends React.Component {
                     className="paintingfield"
                     ref="paintingfield"
                 >
-                    <canvas 
-                        className="whiteboard" 
-                        ref="whiteboard" 
-                        onMouseDown={(e)=>this.findxy(e,'down')}
-                        onMouseMove={(e)=>this.findxy(e,'move')}
-                        onMouseUp={(e)=>this.findxy(e,'up')}
-                        onMouseOut={(e)=>this.findxy(e,'up')}
+                    <canvas
+                        className="whiteboard"
+                        ref="whiteboard"
+                        onMouseDown={(e) => this.findxy(e, 'down')}
+                        onMouseMove={(e) => this.findxy(e, 'move')}
+                        onMouseUp={(e) => this.findxy(e, 'up')}
+                        onMouseOut={(e) => this.findxy(e, 'up')}
                     />
                 </div>
-            </div>
+            </div >
         );
     }
 }

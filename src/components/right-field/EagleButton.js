@@ -2,7 +2,7 @@
 
 import React from "react";
 import styled from 'styled-components';
-import socket from "../../../WeMeetWork/src/socket";
+// import socket from "../../../WeMeetWork/src/socket";
 
 export default class EagleButton extends React.Component{
     constructor(props){
@@ -11,20 +11,17 @@ export default class EagleButton extends React.Component{
             display: 'none' ,
             advice: ''
         }
-    
-
-    
     }
     
-componentDidMount(){
-    socket.on('receiveDBStatus', (DBstatus)=>{
-        if(DBstatus.DBstatus==="Success"){
+// componentDidMount(){
+//     socket.on('receiveDBStatus', (DBstatus)=>{
+//         if(DBstatus.DBstatus==="Success"){
 
-        }else{
+//         }else{
             
-        }
-    })
-}
+//         }
+//     })
+// }
 
 // if else 
 // 3 等於
@@ -50,12 +47,12 @@ onChange_Text(e){
     this.setState({advice: e.target.value});
 }
 
-onClick_adviceSend(){
-    socket.emit('sendFeedback',{
-            'msg': this.state.advice,
-            'creat_at' : date
-    })
-}
+// onClick_adviceSend(){
+//     socket.emit('sendFeedback',{
+//             'msg': this.state.advice,
+//             'creat_at' : date
+//     })
+// }
 
 
 // emit ????
@@ -69,10 +66,12 @@ onClick_adviceSend(){
             height:50px;
             border: 2px solid;
         `;
-        const Onput=styled.input`
+        const Textarea=styled.textarea`
             top:5%;
             right:5%;
             position:absolute;
+            resize : none;
+            overflow-y : auto;
         `;
         const Hidden=styled.div`
             display:${this.state.display};
@@ -98,25 +97,22 @@ onClick_adviceSend(){
                 </Button>
                 {/* // RETURN 變數 很少就ok */}
                 <Hidden>
-                    <Onput placeholder="Enter your advice" 
+                    <Textarea placeholder="Enter your advice" 
                         onChange={ ()=>{
-                            this.onChange_Text()
+                            this.onChange_Text
                             }
                         }
-                    />  //textarea
+                    />  
                     
                     <Button
                         onClick={ ()=>{
-                                this.onClick_adviceSend()
+                                // this.onClick_adviceSend()
                             }
                         }
                     >
                     send
                     </Button>
                 </Hidden>
-
-            action
-            parent child    
             </div>
             // ul>li*2
             // p10
