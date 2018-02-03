@@ -2,9 +2,12 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { setGrid, setGridClose } from "../../actions/Actions";
+import { setGrid, 
+    // setGridClose 
+} from "../../actions/Actions";
 import socket from "../../socket";
-import { downloadCSV } from "../../lib/downloadCSV";
+// import { downloadCSV } from "../../lib/downloadCSV";
+import GridGameControl from "./GridGameControl";
 
 class GridGame extends React.Component {
     constructor(props) {
@@ -158,9 +161,9 @@ class GridGame extends React.Component {
         });
     }
 
-    onClick_closeGrid() {
-        this.props.dispatch(setGridClose());
-    }
+    // onClick_closeGrid() {
+    //     this.props.dispatch(setGridClose());
+    // }
 
     render() {
         let result = [];
@@ -212,56 +215,15 @@ class GridGame extends React.Component {
                 className="main-screen"
                 id={this.state.isEnlarge ? "bigger" : ""}
             >
-                {this.state.isEnlarge ? <div className="blackBG" /> : null}
-                <div
-                    className="gametoolbar"
-                    id={this.state.isEnlarge ? "bigger" : ""}
-                >
-                    {this.state.isEnlarge ? (
-                        <div
-                            className="button2"
-                            id="backtosmall"
-                            onClick={this.onClick_ChangeSize}
-                        >
-                            縮小
-                        </div>
-                    ) : (
-                        <div
-                            className="button2"
-                            id="fullscreen"
-                            onClick={this.onClick_ChangeSize}
-                        >
-                            放大
-                        </div>
-                    )}
-                    <div
-                        className="button2"
-                        id="reset"
-                        onClick={() => {
-                            this.onClick_clearGrid();
-                        }}
-                    >
-                        清空
-                    </div>
-                    <div
-                        className="button2"
-                        id="dowload"
-                        onClick={() => {
-                            downloadCSV(this.props.grid);
-                        }}
-                    >
-                        下載
-                    </div>
-                    <div
-                        className="button2"
-                        id="shutdown"
-                        onClick={() => {
-                            this.onClick_closeGrid();
-                        }}
-                    >
-                        結束
-                    </div>
-                </div>
+                <GridGameControl 
+                    isEnlarge={this.state.isEnlarge}
+                    ChangeSize={this.onClick_ChangeSize}
+                    clearGrid={this.onClick_clearGrid}
+                    // child的props 是原本父曾der props
+                    //clearGrid() ?
+                    // result 怎麼傳遞 (under)
+                    // close grid 傳遞(dispatch)的暸嗎
+                />
                 {result}
             </div>
         );

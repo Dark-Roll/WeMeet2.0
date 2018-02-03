@@ -157,26 +157,14 @@ class Painting extends React.Component {
         }).bind(this);
     }
 
-
-    // handleColor(color) {
-    //     this.setState({
-    //         color: color
-    //     })
-    //     // console.log(this.props.isColorListOpen);
-    // }
-
     handler(newState) {
-        // console.log(isColorListOpen);
         this.setState(newState)
-
-        // console.log(this.state.isColorListOpen);
     }
 
     handleIs(isColorListOpen) {
         this.setState({
             isColorListOpen: isColorListOpen
         })
-
     }
 
     render() {
@@ -226,7 +214,6 @@ class Painting extends React.Component {
                         color={this.state.color}
                         isColorListOpen={this.state.isColorListOpen}
                         Change={this.handler}
-
                         ChangeIs={this.handleIs}
                     />
 

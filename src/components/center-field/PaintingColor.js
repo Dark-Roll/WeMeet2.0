@@ -48,14 +48,12 @@ export default class PaintingColor extends React.Component {
     onClick_blue() {
         this.props.Change({
             color: "blue",
-            showColorList
+            isColorListOpen: false
         });
     }
 
     showColorList() {
         this.props.ChangeIs(!this.props.isColorListOpen);
-        // console.log(this.props);
-        // console.log(!this.props.isColorListOpen);
     }
 
     render() {
