@@ -2,6 +2,7 @@
 
 import React from "react";
 import styled from 'styled-components';
+import Eagle from '../../img/eagle.png';
 // import socket from "../../../WeMeetWork/src/socket";
 
 export default class EagleButton extends React.Component{
@@ -58,32 +59,113 @@ onChange_Text(e){
 // emit ????
 // styled-components
     render(){
+        // const Button=styled.button`
+        //     position: absolute;
+        //     top:5%;
+        //     right:10%;
+        //     width:150px;
+        //     height:50px;
+        //     border: 2px solid;
+        // `;
+
         const Button=styled.button`
             position: absolute;
-            top:5%;
-            right:10%;
-            width:150px;
-            height:50px;
-            border: 2px solid;
+            right:4%;
+            z-index: 4;
+            bottom: 5%;
+            padding: 10px;
+            border-radius: 20px;
+            background-color: #f39c12;
+            font-size: 1vmax;
+            pointer-events: auto;
+            color: #fff;
+            transition: all .2s ease-in-out;
+            display: inline-block;
+            margin: 0;
+            box-shadow: 0 0 1px -1px #121416;
+            font-family: inherit;
+
+            -webkit-transition-duration: 0.2s; /* Safari */
+            transition-duration: 0.2s;
+            text-decoration: none;
+            overflow: hidden;
+            :hover{
+                background:#fff;
+                box-shadow:0px 2px 10px 5px #97B1BF;
+                color:#000;
+            }
+            :active {
+                background: inherit;
+            
+                transform: translateY(50%);
+            }
         `;
+
+        
+        
         const Textarea=styled.textarea`
-            top:5%;
-            right:5%;
+            
+            //right:5%;
             position:absolute;
             resize : none;
             overflow-y : auto;
+
+            padding: 5px 15px;
+            border: none;
+            z-index: 3;
+            background-color: #E0EEC6;
+            display: block;
+            width: 90%;
+            height: 60%;
+            bottom: 0%;
         `;
         const Hidden=styled.div`
             display:${this.state.display};
-            top:5%;
+            
             right:5%;
             position:absolute;
+
+            background-color: #3D348B;
+            border: 1px solid;
+            border-color: #3D348B;
+            height: 1600%;
+            width: 200%;
+            top:5%;
+            right:17%;
+            z-index: 10;
+           
             
         `;
         
+        // const Eagle=styled.img`
+        //     position: absolute;
+        //     z-index: 2;
+        //     top:0%;
+        //     height: 16%;
+            
+        //     animation: eagle 5s infinite;
+            
+        //     src=${{Eagle}};
+        // `;
+
+        const adviceIntroduce=styled.span`
+            display: inline-block;
+            font-family: inherit;
+            font-size: 16px;
+            line-height: 125%;
+            padding: 7px 10px;
+            color: #E0E2DB;
+        `;
+
         return(
             <div className="box">
-                <Button                     
+                <img className="eagle" src={Eagle} 
+                    onClick={ ()=>{
+                        this.onClick()
+                    }}
+                />
+                
+                {/* <Button                     
                     onClick={ ()=>{
                             this.onClick()
                         }
@@ -94,9 +176,15 @@ onChange_Text(e){
                     }
                 >
                 顯示
-                </Button>
+                </Button> */}
                 {/* // RETURN 變數 很少就ok */}
                 <Hidden>
+                    <adviceIntroduce>
+                        <span>
+                        Hi there! Leave a message and we'll get back to you as 
+                    soon as possible :)
+                        </span>
+                    </adviceIntroduce>
                     <Textarea placeholder="Enter your advice" 
                         onChange={ ()=>{
                             this.onChange_Text

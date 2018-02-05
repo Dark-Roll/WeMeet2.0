@@ -2,7 +2,8 @@
 
 import React from "react";
 import { connect } from "react-redux";
-import { setGrid, 
+import {
+    setGrid,
     // setGridClose 
 } from "../../actions/Actions";
 import socket from "../../socket";
@@ -61,9 +62,9 @@ class GridGame extends React.Component {
         ];
     }
 
-    componentWillMount() {}
+    componentWillMount() { }
 
-    componentDidMount() {}
+    componentDidMount() { }
 
     onChangeInput(e) {
         let key = e.target.getAttribute("data");
@@ -215,20 +216,60 @@ class GridGame extends React.Component {
                 className="main-screen"
                 id={this.state.isEnlarge ? "bigger" : ""}
             >
-                <GridGameControl 
+                <GridGameControl
                     isEnlarge={this.state.isEnlarge}
                     ChangeSize={this.onClick_ChangeSize}
                     clearGrid={this.onClick_clearGrid}
-                    // child的props 是原本父曾der props
-                    //clearGrid() ?
-                    // result 怎麼傳遞 (under)
-                    // close grid 傳遞(dispatch)的暸嗎
+                // child的props 是原本父曾der props
+                //clearGrid() ?
+                // result 怎麼傳遞 (under)
+                // close grid 傳遞(dispatch)的暸嗎
                 />
                 {result}
             </div>
+
+        // function Album(id, title, owner_id) {
+        //     this.id = id;
+        //     this.name = title;
+        //     this.owner_id = owner_id;
+        // };
+
+        // Album.prototype.get_owner = function (callback) {
+        //     var self = this;
+
+        //     $.get('/owners/' + this.owner_id, function (data) {
+        //         callback && callback.call(self, data.name);
+        //     });
+        // };
+
+        // var album = new Album(1, 'node.js conf', 2);
+
+        // album.get_owner(function (owner) {
+        //     alert('The album' + this.name + ' belongs to ' + owner);
+        // });
+
+
+        // function fun(n,o) {   //第一個 fun
+        //     console.log(o);
+        //     return{ 
+        //         fun:function(m){
+        //             return fun(m,n);   //第三個 fun ，和第一個fun 一樣 ，為什麼呢
+        //         } 
+        //     }; 
+        // }
+        // var a = fun(0); a.fun(1); a.fun(2); a.fun(3);
+        // var b = fun(0).fun(1).fun(2).fun(3);
+        // var c = fun(0).fun(1); c.fun(2); c.fun(3);
+
+        
+
+
+
         );
     }
 }
+
+
 
 const mapStateToProps = state => {
     return {

@@ -10,6 +10,13 @@
   height: 50%;
 }
 
+.box {
+  position: absolute;
+  top:1.5% ;
+  right:85%;
+  width: 150px;
+}
+
 .eagle {
   position: fixed;
   z-index: 2;
@@ -19,6 +26,165 @@
   cursor:pointer;
   //animation: eagle 5s infinite;
 }
+
+.adviceContainer{
+  background-color: #3D348B;
+  border: 1px solid;
+  border-color: #3D348B;
+  height: 1600%;
+  width: 200%;
+  top:5%;
+  right:17%;
+  z-index: 10;
+  position: absolute;
+}
+
+
+.adviceIntroduce{
+  display: inline-block;
+  font-family: inherit;
+  font-size: 16px;
+  line-height: 125%;
+  padding: 7px 10px;
+  color: #E0E2DB;
+}
+
+.adviceInput{
+  padding: 5px 15px;
+  border: none;
+  position: absolute;
+  // border: 2px solid;
+  // border-color: #f39c12;
+  background-color: #E0EEC6;
+  // cursor:pointer;
+  display: block;
+  width: 90%;
+  height: 60%;
+  bottom: 0%;
+  resize:none;
+
+  overflow-y: auto;
+  
+  // right: 15%;
+  // position: absolute;
+  z-index: 3;
+  // background-color: rgb(255,255,255);
+  // border-bottom-style: solid;
+}
+
+.adviceSendButton{
+  position: absolute;
+  // top:5% ;
+  right:4%;
+  z-index: 4;
+  bottom: 5%;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #f39c12;
+
+  // font-size: 20px;
+  font-size: 1vmax;
+  pointer-events: auto;
+  cursor: pointer;
+ 
+  // width: initial;
+  // padding: 1.452vh 2.96vw;
+  
+  color: #fff;
+  // border: 1px solid #121416;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  margin: 0;
+  box-shadow: 0 0 1px -1px #121416;
+  font-family: inherit;
+
+  -webkit-transition-duration: 0.2s; /* Safari */
+  transition-duration: 0.2s;
+  text-decoration: none;
+  overflow: hidden;
+ 
+}
+
+
+// 去除黄色的框：outline:none;
+
+
+
+// .adviceSendButton {
+//   position: absolute;
+//     top:5% ;
+//     right:10%;
+
+//     z-index: 4;
+
+//   border: none;
+//   padding: 20px;
+//   width: 30px;
+//   text-align: center;
+//   // background-color: #2ecc71;
+//   color: #fff;
+
+//   font-family: 'Open Sans', sans-serif;
+//   // -webkit-transition-duration: 0.4s; /* Safari */
+//   // transition-duration: 0.4s;
+//   // text-decoration: none;
+//   // overflow: hidden;
+// }
+
+.adviceSendButton:hover{
+ background:#fff;
+ box-shadow:0px 2px 10px 5px #97B1BF;
+ color:#000;
+}
+
+.adviceSendButton:active {
+  background: inherit;
+  // box-shadow: 0 5px #95a5a6;
+  transform: translateY(50%);
+}
+
+
+
+
+.btn{
+  position: absolute;
+  top:5%;
+  right: 5%;
+  width: 50px;
+  height: 50px;
+  border: 2px solid;
+  z-index: 4;
+}
+
+
+
+// .eagleHover:hover .hoverAdvice{
+//   display: block;
+//   position: fixed;
+//   background-color: rgb(255,255,255);
+  
+// }
+
+// .eagleHover:hover .toolbar-button{
+//   display: block;
+  
+// }
+
+
+  // .eagle:hover .adviceText {
+  //   display: block;
+  //   right:10%;
+  //   top:0%;
+  //   width: 150px;
+  //   position: fixed;
+  //   //  right: auto;
+  //   // padding: 5px 15px;
+  //   // border: 2px black solid;
+  //   // cursor:pointer;  
+  // } 
+
+
+
 
 .branch{
   position: absolute;
