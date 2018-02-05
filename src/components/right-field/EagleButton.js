@@ -101,7 +101,22 @@ onChange_Text(e){
             }
         `;
 
+        const Hidden=styled.div`
+        display:${this.state.display};
         
+        box-sizing:border-box;
+        right:5%;
+        position:absolute;
+
+        background-color: #3D348B;
+        border: 1px solid;
+        border-color: #3D348B;
+        height: 200px;
+        width: 150%;
+        top:5%;
+        right:60%;
+        z-index: 10;
+        `;
         
         const Textarea=styled.textarea`
             
@@ -110,32 +125,18 @@ onChange_Text(e){
             resize : none;
             overflow-y : auto;
 
+            box-sizing:border-box;
+
             padding: 5px 15px;
             border: none;
             z-index: 3;
             background-color: #E0EEC6;
             display: block;
-            width: 90%;
+            width: 100%;
             height: 60%;
             bottom: 0%;
         `;
-        const Hidden=styled.div`
-            display:${this.state.display};
-            
-            right:5%;
-            position:absolute;
-
-            background-color: #3D348B;
-            border: 1px solid;
-            border-color: #3D348B;
-            height: 1600%;
-            width: 200%;
-            top:5%;
-            right:17%;
-            z-index: 10;
-           
-            
-        `;
+    
         
         // const Eagle=styled.img`
         //     position: absolute;
@@ -148,7 +149,7 @@ onChange_Text(e){
         //     src=${{Eagle}};
         // `;
 
-        const adviceIntroduce=styled.span`
+        const AdviceIntroduce=styled.div`
             display: inline-block;
             font-family: inherit;
             font-size: 16px;
@@ -156,6 +157,7 @@ onChange_Text(e){
             padding: 7px 10px;
             color: #E0E2DB;
         `;
+// 設判斷 font-size
 
         return(
             <div className="box">
@@ -179,12 +181,12 @@ onChange_Text(e){
                 </Button> */}
                 {/* // RETURN 變數 很少就ok */}
                 <Hidden>
-                    <adviceIntroduce>
-                        <span>
+                    <AdviceIntroduce>
+                        {/* <span> */}
                         Hi there! Leave a message and we'll get back to you as 
                     soon as possible :)
-                        </span>
-                    </adviceIntroduce>
+                        {/* </span> */}
+                    </AdviceIntroduce>
                     <Textarea placeholder="Enter your advice" 
                         onChange={ ()=>{
                             this.onChange_Text
