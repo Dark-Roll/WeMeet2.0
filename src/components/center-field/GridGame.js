@@ -149,18 +149,7 @@ class GridGame extends React.Component {
         });
     }
 
-    onClick_clearGrid() {
-        this.props.dispatch(
-            setGrid({
-                position: "all",
-                value: ""
-            })
-        );
-        socket.emit("setGrid", {
-            position: "all",
-            value: ""
-        });
-    }
+
 
     // onClick_closeGrid() {
     //     this.props.dispatch(setGridClose());
@@ -219,12 +208,15 @@ class GridGame extends React.Component {
                 <GridGameControl
                     isEnlarge={this.state.isEnlarge}
                     ChangeSize={this.onClick_ChangeSize}
-                    clearGrid={this.onClick_clearGrid}
+                    // clearGrid={this.onClick_clearGrid}
                 // child的props 是原本父曾der props
                 //clearGrid() ?
                 // result 怎麼傳遞 (under)
                 // close grid 傳遞(dispatch)的暸嗎
                 />
+                
+                
+
                 {result}
             </div>
 

@@ -59,14 +59,6 @@ onChange_Text(e){
 // emit ????
 // styled-components
     render(){
-        // const Button=styled.button`
-        //     position: absolute;
-        //     top:5%;
-        //     right:10%;
-        //     width:150px;
-        //     height:50px;
-        //     border: 2px solid;
-        // `;
 
         const Button=styled.button`
             position: absolute;
@@ -102,25 +94,24 @@ onChange_Text(e){
         `;
 
         const Hidden=styled.div`
-        display:${this.state.display};
-        
-        box-sizing:border-box;
-        right:5%;
-        position:absolute;
+            display:${this.state.display};
+            
+            box-sizing:border-box;
+            right:5%;
+            position:absolute;
 
-        background-color: #3D348B;
-        border: 1px solid;
-        border-color: #3D348B;
-        height: 200px;
-        width: 150%;
-        top:5%;
-        right:60%;
-        z-index: 10;
+            background-color: #3D348B;
+            border: 1px solid;
+            border-color: #3D348B;
+            height: 200px;
+            width: 150%;
+            top:5%;
+            right:60%;
+            z-index: 10;
         `;
         
         const Textarea=styled.textarea`
             
-            //right:5%;
             position:absolute;
             resize : none;
             overflow-y : auto;

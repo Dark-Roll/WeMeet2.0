@@ -1,6 +1,7 @@
 import React from 'react';
-import { setGridClose } from "../../actions/Actions";
+import { setGrid,setGridClose } from "../../actions/Actions";
 import { downloadCSV } from "../../lib/downloadCSV";
+import socket from "../../socket";
 
 import { connect } from "react-redux";
 
@@ -14,6 +15,19 @@ export default class GridGameControl extends React.Component {
 
     onClick_closeGrid() {
         this.props.dispatch(setGridClose());
+    }
+
+    onClick_clearGrid() {
+        this.props.dispatch(
+            setGrid({
+                position: "all",
+                value: ""
+            })
+        );
+        socket.emit("setGrid", {
+            position: "all",
+            value: ""
+        });
     }
 
     render() {
@@ -41,15 +55,17 @@ export default class GridGameControl extends React.Component {
                             放大
                         </div>
                     )}
+                   
                     < div
                         className = "button2"
                         id = "reset"
                         onClick = {() => {
-                            this.props.clearGrid();
+                            this.onClick_clearGrid();
                         }}
                     >
                         清空
                     </div >
+
                     <div
                         className="button2"
                         id="dowload"
