@@ -4,7 +4,7 @@ Description
 ## Getting Started
 ```
 node server.js 
-(yarn start or npm start)
+yarn start or npm start
 ```
 
 ## Installing
