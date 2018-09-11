@@ -4,7 +4,6 @@ Description
 ## Getting Started
 ```
 node server.js 
-and
 (yarn start or npm start)
 ```
 
