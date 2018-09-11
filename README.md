@@ -3,9 +3,9 @@ Description
 
 ## Getting Started
 ```
-yarn start
-or
-npm start
+node server.js 
+and
+(yarn start or npm start)
 ```
 
 ## Installing
