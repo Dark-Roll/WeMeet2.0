@@ -12,7 +12,8 @@
     "watch": "webpack -w --config webpack.prod.config.js",
     "build": "webpack -p --config webpack.prod.config.js",
     "server": "node server.js",
-    "dev": "webpack-dev-server --config webpack.dev.config.js"
+    "dev": "webpack-dev-server --config webpack.dev.config.js",
+    "prod": "webpack-dev-server --config webpack.prod.config.js"
   },
   "dependencies": {
     "babel": "^6.23.0",

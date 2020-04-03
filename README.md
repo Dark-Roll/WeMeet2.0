@@ -1,6 +1,9 @@
 # WeMeet2.0
 Description
 
+Notice: make compatible between node-sass and OS
+Node version: 8.15.0
+
 ## Getting Started
 ```
 node server.js 
